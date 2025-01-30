@@ -31,3 +31,16 @@ resource "aws_ecs_task_definition" "appointment_service" {
     Name = var.task_name
   }
 }
+
+resource "aws_ecs_service" "app_service" {
+  name = var.service_name
+  cluster = var.cluster_id
+  task_definition = var.task_definition
+  desired_count   = 1
+  launch_type = "FARGATE"
+  network_configuration {
+    subnets = var.subnets
+    security_groups = var.security_groups
+    assign_public_ip = true
+  }
+}
