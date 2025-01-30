@@ -51,8 +51,3 @@ module "alb" {
   vpc_id      = module.vpc.vpc_id
   subnets     = module.vpc.public_subnets
 }
-
-module "monitoring" {
-  source         = "../../Modules/Cloudwatch"
-  log_group_name = var.log_group_name
-}
